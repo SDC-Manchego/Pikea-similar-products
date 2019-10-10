@@ -1,0 +1,19 @@
+{
+  "name": "djason-ikea-similar-products",
+  "version": "1.0.0",
+  "description": "Clone Ikea similar produts, details page",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FEC-HRR41-PICOLLO/djason-ikea-similar-products.git"
+  },
+  "author": "Djason Sylvaince",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FEC-HRR41-PICOLLO/djason-ikea-similar-products/issues"
+  },
+  "homepage": "https://github.com/FEC-HRR41-PICOLLO/djason-ikea-similar-products#readme"
+}
