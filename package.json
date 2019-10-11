@@ -4,7 +4,9 @@
   "description": "Clone Ikea similar produts, details page",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bulkprod": "node database/seederProducts.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/FEC-HRR41-PICOLLO/djason-ikea-similar-products/issues"
   },
-  "homepage": "https://github.com/FEC-HRR41-PICOLLO/djason-ikea-similar-products#readme"
+  "homepage": "https://github.com/FEC-HRR41-PICOLLO/djason-ikea-similar-products#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^1.7.0",
+    "nodemon": "^1.19.3",
+    "sequelize": "^5.19.5"
+  }
 }
