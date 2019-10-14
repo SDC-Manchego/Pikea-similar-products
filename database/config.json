@@ -9,14 +9,14 @@
   "test": {
     "username":"root",
     "password":"password",
-    "database":"ikeaproductsdb_test",
+    "database":"ikeaproductsdb",
     "host":"127.0.0.1",
     "dialect":"mysql"
   },
   "production": {
     "username":"root",
     "password":"password",
-    "database":"ikeaproductsdb_test",
+    "database":"ikeaproductsdb_prod",
     "host":"127.0.0.1",
     "dialect":"mysql"
   }
