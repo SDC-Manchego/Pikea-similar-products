@@ -15,6 +15,7 @@ beforeAll((done)=>{
     database: config.database
   });
   connection.connect();
+  // Empty data table before test
   connection.query('SET FOREIGN_KEY_CHECKS = 0', done);
   connection.query('TRUNCATE TABLE ' + 'similar_reviews', done);
   connection.query('TRUNCATE TABLE ' + 'similar_products', done);
@@ -22,6 +23,7 @@ beforeAll((done)=>{
 });
 
 afterAll(()=>{
+  //end connection
   connection.end();
 })
 
