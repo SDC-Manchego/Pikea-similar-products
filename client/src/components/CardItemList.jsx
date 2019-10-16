@@ -4,7 +4,11 @@ import RatingImages from './RatingImages.jsx';
 import {Row, Col, Card, Badge} from 'react-bootstrap';
 
 const CardItemList = ({itemdetails})=>{
-  var star = Math.round(itemdetails.review/itemdetails.total);
+  var star =0;
+  if(itemdetails.review !== null){
+    star = Math.round(itemdetails.review/itemdetails.total);
+  }
+
   var st = '';
   if(itemdetails.id_similar % 2 === 0){
     st = {display: 'none'}
@@ -14,8 +18,8 @@ const CardItemList = ({itemdetails})=>{
   var desc = itemdetails.desc_similar.substr(0,25);
 
   return (
-    <Card style={{ width: '14rem', border:'none'}}>
-        <Card.Img variant="top" src="https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG03.jpeg" />
+    <Card style={{ width: '14rem', border:'none', cursor: 'pointer'}}>
+        <Card.Img variant="top" src={itemdetails.img_similar} />
         <Card.Body style={{padding: '0rem'}}>
           <Card.Title>
             <Badge pill className='dj-new-alert' style={st}>
@@ -37,7 +41,7 @@ const CardItemList = ({itemdetails})=>{
               <Row>
                 <Col className='dj-star-prod' style={{float:'left'}}>
                   <RatingImages count={star}/>
-                  <span className='dj-starcount-prod'>{star} ({itemdetails.total})</span>
+                  <span className='dj-starcount-prod'>&emsp;&emsp; {star} ({itemdetails.total})</span>
                 </Col>
               </Row>
             </div>
