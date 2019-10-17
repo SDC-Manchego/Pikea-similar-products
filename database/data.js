@@ -3,13 +3,23 @@
  */
 
 var SeedData = function(){
-  this.titleArr = ['FRIHETEN', 'BRATHULT', 'HOLMSUND', 'SANDBACKEN', 'HEMNES', 'BALKARP', 'FÄRLÖV', 'BRIMNES', 'FLOTTEBO', 'FLEKKE', 'FYRESDAL', 'YPPERLIG', 'VALLENTUNA', 'VALLENTUNA'];
+  this.titleArr = ['FRIHETEN', 'BRATHULT', 'HOLMSUND', 'SANDBACKEN', 'HEMNES', 'BALKARP', 'FÄRLÖV', 'BRIMNES', 'FLOTTEBO', 'FLEKKE', 'FYRESDAL', 'YPPERLIG', 'VALLENTUNA', 'VALLENTUNA', 'KARLSTAD', 'KIVIK'];
 
   this.descArr = ['Sleeper sofa', 'Sleeper sectional, 3-seat', 'Daybed with 2 drawers/2 mattresses, Twin', 'Daybed frame with 2 drawers, Twin', 'Sleeper sectional, 3-seat', 'Sleeper sofa, 47 1/4', 'Daybed with 2 mattresses, Twin'];
 
   this.pricerr = [199.00, 899.00, 655.00, 449.00, 1190.00, 599.00];
 
-  this.imgArr = ['SOFA_BED_IMG02.jpeg', 'SOFA_BED_IMG03.jpeg', 'SOFA_BED_IMG04.jpeg', 'SOFA_BED_IMG05.JPG', 'SOFA_BED_IMG07.JPG', 'SOFA_BED_IMG09.JPG', 'SOFA_BED_IMG10.jpeg', 'SOFA_BED_IMG0206.jpeg', 'SOFA_BED_IMG0208.jpeg'];
+  this.imgArr = [
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG02.jpeg',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG0206.jpeg',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG0208.jpeg',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG03.jpeg',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG04.jpeg',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG05.JPG',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG07.JPG',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG09.JPG',
+  'https://media-file-fec-ikea.s3.us-east-2.amazonaws.com/media/SOFA_BED_IMG10.jpeg'
+  ];
   this.data = [];
 }
 
