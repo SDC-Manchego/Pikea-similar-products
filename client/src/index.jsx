@@ -12,16 +12,20 @@ class App extends React.Component{
       data: [],
       currentPos: 0
     }
-
+    console.log = console.warn = console.error = () => {};
     this.left= this.left;
     this.rigth= this.rigth;
     this.mousehover = this.mousehover;
     this.mouseout = this.mouseout;
   }
+  /*
+  GET CURRENT URL->
+  window.location.href, document.baseURI, document.URL
+  */
 
   componentDidMount(){
     $.ajax({
-      url: 'http://192.168.1.2:3000/products/',
+      url: `${document.baseURI}products/`,
       type: 'GET',
       success: (data)=>{
         var arrData = []
