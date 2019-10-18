@@ -21,7 +21,7 @@ class App extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url: 'http://127.0.0.1:3000/products/',
+      url: 'http://192.168.1.2:3000/products/',
       type: 'GET',
       success: (data)=>{
         var arrData = []
@@ -56,8 +56,8 @@ class App extends React.Component{
       this.setState(state=>({
         currentPos: pos
       }))
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
+      //$(document.getElementById("okIm")).animate({width: 'toggle'});
+      //$(document.getElementById("okIm")).animate({width: 'toggle'});
     }
   }
 
@@ -70,8 +70,8 @@ class App extends React.Component{
       this.setState(state=>({
         currentPos: pos
       }))
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
+      // $(document.getElementById("okIm")).animate({width: 'toggle'});
+      // $(document.getElementById("okIm")).animate({width: 'toggle'});
     }
   }
 

@@ -2,10 +2,14 @@ const express = require ('express');
 const bodyParser = require ('body-parser');
 const db = require('./../database/');
 const PORT = '3000';
+const cors = require('cors')
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
+//Enable All CORS Requests
+app.use(cors());
+
 app.get('/products', (req, res)=>{
     db.SelectAllProduct((err, result)=>{
       if(err){
