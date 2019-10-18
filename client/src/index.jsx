@@ -12,16 +12,20 @@ class App extends React.Component{
       data: [],
       currentPos: 0
     }
-
+    console.log = console.warn = console.error = () => {};
     this.left= this.left;
     this.rigth= this.rigth;
     this.mousehover = this.mousehover;
     this.mouseout = this.mouseout;
   }
+  /*
+  GET CURRENT URL->
+  window.location.href, document.baseURI, document.URL
+  */
 
   componentDidMount(){
     $.ajax({
-      url: 'http://127.0.0.1:3000/products/',
+      url: `${document.baseURI}products/`,
       type: 'GET',
       success: (data)=>{
         var arrData = []
@@ -56,8 +60,8 @@ class App extends React.Component{
       this.setState(state=>({
         currentPos: pos
       }))
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
+      //$(document.getElementById("okIm")).animate({width: 'toggle'});
+      //$(document.getElementById("okIm")).animate({width: 'toggle'});
     }
   }
 
@@ -70,8 +74,8 @@ class App extends React.Component{
       this.setState(state=>({
         currentPos: pos
       }))
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
+      // $(document.getElementById("okIm")).animate({width: 'toggle'});
+      // $(document.getElementById("okIm")).animate({width: 'toggle'});
     }
   }
 
@@ -99,6 +103,7 @@ class App extends React.Component{
             <Image onMouseOut={this.mouseout.bind(this)} onMouseOver={this.mousehover.bind(this)} onClick={this.rigth.bind(this)} src='https://image.flaticon.com/icons/svg/271/271226.svg' roundedCircle className='dj-arrow-next-prev' style={{ padding:'3px',width: '1.75rem'}}/>
           </div>
         </div>
+        <h3 className='dj-title-section'>You might also like</h3>
       </div>
     )
   }
