@@ -103,6 +103,7 @@ class App extends React.Component{
             <Image onMouseOut={this.mouseout.bind(this)} onMouseOver={this.mousehover.bind(this)} onClick={this.rigth.bind(this)} src='https://image.flaticon.com/icons/svg/271/271226.svg' roundedCircle className='dj-arrow-next-prev' style={{ padding:'3px',width: '1.75rem'}}/>
           </div>
         </div>
+        <h3 className='dj-title-section'>You might also like</h3>
       </div>
     )
   }
