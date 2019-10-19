@@ -16,10 +16,11 @@ const CardItemList = ({itemdetails})=>{
     st = {display: 'block'}
   }
   var desc = itemdetails.desc_similar.substr(0,25);
+  var price = parseFloat(itemdetails.price_similar).toFixed(2)
 
   return (
     <Card style={{ width: '14rem', border:'none', cursor: 'pointer'}}>
-        <Card.Img variant="top" src={itemdetails.img_similar} />
+        <Card.Img variant="top" src={itemdetails.img_similar} style={{marginBottom: '3rem'}}/>
         <Card.Body style={{padding: '0rem'}}>
           <Card.Title>
             <Badge pill className='dj-new-alert' style={st}>
@@ -35,7 +36,7 @@ const CardItemList = ({itemdetails})=>{
             </span>
             <br></br>
             <span className='dj-price-prod'>
-            ${itemdetails.price_similar}.00
+            ${price}
             </span>
             <div className='dj-rating-block'>
               <Row>

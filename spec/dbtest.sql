@@ -10,6 +10,7 @@ CREATE TABLE similar_products (
   price_similar float NOT NULL,
   img_similar varchar(100) NOT NULL,
   created_similar DATETIME NOT NULL,
+  category_similar int NOT NULL,
   PRIMARY KEY(id_similar)
 );
 

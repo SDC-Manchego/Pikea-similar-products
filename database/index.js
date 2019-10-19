@@ -13,12 +13,12 @@ const connection = mysql.createConnection({
 /**
  * callback: function that return the result value
  */
-var SelectAllProduct = (callback)=>{
+var SelectAllProduct = (category, callback)=>{
   /*
   SELECT * FROM similar_products ORDER BY RAND() LIMIT 5
   */
 
-  connection.query("SELECT * , (SELECT SUM(review_value) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as review, (SELECT COUNT(id_sreview) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as total FROM similar_products ORDER BY RAND() AND review DESC LIMIT 25", (error, results)=>{
+  connection.query("SELECT * , (SELECT SUM(review_value) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as review, (SELECT COUNT(id_sreview) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as total FROM similar_products WHERE category_similar = ? ORDER BY RAND() AND review DESC LIMIT 25", [category], (error, results)=>{
     if(error){
       callback(error, null)
     }else{
@@ -41,8 +41,14 @@ var SelectProduct = (id, callback)=>{
   })
 }
 
+/***
+ *
+ * data : [[title, desc, price, img, date, category]]
+ * data-> type array (nested array)
+ */
+
 var InsertBulkProduct = (data, callback)=>{
-  connection.query('INSERT INTO similar_products (title_similar, desc_similar, price_similar, img_similar, created_similar) VALUES ?', [data], (error, results)=>{
+  connection.query('INSERT INTO similar_products (title_similar, desc_similar, price_similar, img_similar, created_similar, category_similar) VALUES ?', [data], (error, results)=>{
     if(error){
       callback(error, null);
     }else{
@@ -53,7 +59,7 @@ var InsertBulkProduct = (data, callback)=>{
 
 /***
  *
- * data : [[title, desc, price, img, date]]
+ * data : [[REVIEW VALUE]]
  * data-> type array (nested array)
  */
 var InsertBulkReviews = (data, callback)=>{
