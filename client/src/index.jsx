@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import $ from "jquery";
 var $ = require("jquery");
-import {Container, Row, Col, Image} from 'react-bootstrap';
+import {Image} from 'react-bootstrap';
 import ItemDetails from './components/ItemDetails.jsx';
 
 class App extends React.Component{
@@ -26,8 +26,17 @@ class App extends React.Component{
   */
 
   componentDidMount(){
+    this.getData('')
+    setTimeout(this.getData('Also'), 500);
+  }
+
+  getData(arg){
+    var url = `${window.location.origin}/products/similar/`
+    if(arg!== ''){
+      url = `${window.location.origin}/products/alsolike/`;
+    }
     $.ajax({
-      url: `${window.location.origin}/products/`,
+      url: url,
       type: 'GET',
       success: (data)=>{
         var arrData = []
@@ -49,10 +58,10 @@ class App extends React.Component{
           })
         }
 
-        this.setState(state=>({
-          data: arrData,
-          currentPos: 0
-        }))
+        var obj = {}
+        obj[`data${arg}`] = arrData;
+        obj[`currentPos${arg}`] = 0;
+        this.setState(state=>(obj))
       }
     })
   }
@@ -96,6 +105,8 @@ class App extends React.Component{
   render(){
     return (
       <div className="container-fluid mt-3">
+        <hr style={{width:'90%'}}></hr>
+
         <h3 className='dj-title-section'>Similar products</h3>
         <div className="container">
           <div className="row justify-content-md-center">
@@ -133,22 +144,3 @@ class App extends React.Component{
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-
-
-{/*
-  https://react-bootstrap.netlify.com/
-  https://www.w3schools.com/bootstrap4/bootstrap_flex.asp
-  <Container>
-<Row className="justify-content-md-center">
-  <Col xs lg="1">
-      ---
-  </Col>
-  <Col xs lg="10" className='overflow-auto' style={{padding:'5px'}}>
-
-  </Col>
-  <Col xs lg="1">
-    ---
-  </Col>
-</Row>
-</Container> */}

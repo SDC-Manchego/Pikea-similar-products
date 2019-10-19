@@ -49,11 +49,19 @@ describe("Test Insert product ", ()=>{
 
 
 describe('SHOULD INSERT BULK DATA IN PRODUCT TABLE', ()=>{
-  var arrProdSeed = dataSeed.seederProdFunc(100);
-  test('INSERT PRODUCT', async ()=>{
-    connection.query('INSERT INTO similar_products (title_similar, desc_similar, price_similar, img_similar, created_similar) VALUES ?', [arrProdSeed], (err, result)=>{
+  var arrProdSeed = dataSeed.seederProdFunc(100, 0);
+  test('INSERT SIMILAR PRODUCT', async ()=>{
+    connection.query('INSERT INTO similar_products (title_similar, desc_similar, price_similar, img_similar, created_similar, category_similar) VALUES ?', [arrProdSeed], (err, result)=>{
       expect(typeof result).toBe('object');
       expect(result.affectedRows).toEqual(100);
+    });
+  })
+
+  var arrProdSeed = dataSeed.seederProdFunc(50, 1);
+  test('INSERT SHUFFLE PRODUCT', async ()=>{
+    connection.query('INSERT INTO similar_products (title_similar, desc_similar, price_similar, img_similar, created_similar, category_similar) VALUES ?', [arrProdSeed], (err, result)=>{
+      expect(typeof result).toBe('object');
+      expect(result.affectedRows).toEqual(50);
     });
   })
 
@@ -69,7 +77,7 @@ describe('SHOULD INSERT BULK DATA IN PRODUCT TABLE', ()=>{
 describe('SHOULD TEST GET REQUEST', ()=>{
   test('GET PRODUCT', async ()=>{
     request.
-    get('http://127.0.0.1:3000/products/').
+    get('http://127.0.0.1:3000/products/similar').
     on('response', (response)=>{
 
       expect(response.statusCode).toEqual(201);

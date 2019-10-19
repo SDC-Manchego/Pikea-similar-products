@@ -6,7 +6,7 @@ const RatingImages = ({count})=>{
   for(var i=0; i<5; i++){
     if(c>0){
       ImageCount.push((
-        <Image key={i} src="https://image.flaticon.com/icons/svg/1040/1040230.svg" style={{ width: '0.9rem'}}/>
+        <Image key={i} src="https://image.flaticon.com/icons/svg/1040/1040230.svg" style={{ width: '0.9rem'}}/> 
       ))
       c--;
     }else{
