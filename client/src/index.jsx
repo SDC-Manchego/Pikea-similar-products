@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import $ from "jquery";
 var $ = require("jquery");
-import {Image} from 'react-bootstrap';
 import ItemDetails from './components/ItemDetails.jsx';
-
+import 'bootstrap'
 class App extends React.Component{
   constructor(props){
     super(props);
@@ -66,78 +65,61 @@ class App extends React.Component{
     })
   }
 
-  left(e){
-    var arg = `currentPos${arguments[0]}`;
-    var pos = this.state[arg];
-    if(pos > 0){
-      pos -=1;
-      var obj = {}
-      obj[arg] = pos
-      this.setState(state=>(obj))
-
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-    }
-  }
-
-  rigth(e){
-    var arg = `currentPos${arguments[0]}`;
-    var pos = this.state[arg];
-    if(pos < this.state.data.length -1){
-      pos += 1;
-      var obj = {}
-      obj[arg] = pos
-      this.setState(state=>(obj))
-
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-      $(document.getElementById("okIm")).animate({width: 'toggle'});
-    }
-  }
-
-  mousehover(e){
-    e.target.style.backgroundColor = '#e5e5e5'
-  }
-
-  mouseout(e){
-    e.target.style.backgroundColor = ''
-  }
-
   render(){
     return (
-      <div className="container-fluid mt-3">
+      <div className="container">
         <hr style={{width:'90%'}}></hr>
-
+{/*SIMILAR PRODUCT SECTION START*/}
         <h3 className='dj-title-section'>Similar products</h3>
-        <div className="container">
-          <div className="row justify-content-md-center">
-            <div className="col col-lg-2 align-self-center">
-              <Image onMouseOut={this.mouseout.bind(this)} onMouseOver={this.mousehover.bind(this)} onClick={this.left.bind(this, '')} src='https://image.flaticon.com/icons/svg/271/271218.svg' roundedCircle style={{ padding:'3px',width: '1.75rem'}}/>
-            </div>
-            <div className="col col-lg-8" >
-              <ItemDetails id='okIm' listdata={this.state.data} position={this.state.currentPos}/>
-            </div>
-            <div className="col col-lg-2 align-self-center">
-              <Image onMouseOut={this.mouseout.bind(this)} onMouseOver={this.mousehover.bind(this)} onClick={this.rigth.bind(this, '')} src='https://image.flaticon.com/icons/svg/271/271226.svg' roundedCircle className='dj-arrow-next-prev' style={{ padding:'3px',width: '1.75rem', float: 'right'}}/>
-            </div>
+        <div className="row no-gutters carousel slide" id="similar" data-ride="carousel" data-interval="false">
+{/* LEFT ARROW */}
+          <div className="col align-self-center">
+            <a className="carousel-control-prev" href="#similar" data-slide="prev">
+              <span className="carousel-control-prev-icon-arrow sp dj-rounded align-self-center" style={{textAlign: 'center'}}>
+                <i className="fas fa-arrow-left" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+              </span>
+            </a>
+          </div>
+{/*CAROUSEL ITEM PRODUCT */}
+          <div className="col-10 align-self-center">
+            <ItemDetails listdata={this.state.data} />
+          </div>
+{/* RIGHT ARROW */}
+          <div className="col align-self-center">
+            <a className="carousel-control-next text-center" href="#similar" data-slide="next">
+              <span className="carousel-control-next-icon-arrow sp dj-rounded text-center">
+                  <i className="fas fa-arrow-right dj-icon" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+              </span>
+            </a>
           </div>
         </div>
-
+{/*SIMILAR PRODUCT SECTION START*/}
         <hr style={{width:'90%'}}></hr>
-
+{/*ALSO LIKE SECTION START*/}
         <h3 className='dj-title-section'>You might also like</h3>
-        <div className="container">
-          <div className="row justify-content-md-center">
-            <div className="col col-lg-2 align-self-center">
-              <Image onMouseOut={this.mouseout.bind(this)} onMouseOver={this.mousehover.bind(this)} onClick={this.left.bind(this, 'Also')} src='https://image.flaticon.com/icons/svg/271/271218.svg' roundedCircle style={{ padding:'3px',width: '1.75rem'}}/>
-            </div>
-            <div className="col col-lg-8">
-              <ItemDetails listdata={this.state.dataAlso} position={this.state.currentPosAlso}/>
-            </div>
-            <div className="col col-lg-2 align-self-center">
-              <Image onMouseOut={this.mouseout.bind(this)} onMouseOver={this.mousehover.bind(this)} onClick={this.rigth.bind(this, 'Also')} src='https://image.flaticon.com/icons/svg/271/271226.svg' roundedCircle className='dj-arrow-next-prev' style={{ padding:'3px',width: '1.75rem', float: 'right'}}/>
-            </div>
+        <div className="row no-gutters carousel slide" id="alsolike" data-ride="carousel" data-interval="false">
+{/* LEFT ARROW */}
+          <div className="col align-self-center">
+            <a className="carousel-control-prev" href="#alsolike" data-slide="prev">
+              <span className="carousel-control-prev-icon-arrow sp dj-rounded align-self-center">
+                <i className="fas fa-arrow-left" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+              </span>
+            </a>
+          </div>
+{/*CAROUSEL ITEM ALSO LIKE*/}
+          <div className="col-10 align-self-center">
+            <ItemDetails listdata={this.state.dataAlso} />
+          </div>
+{/* RIGHT ARROW */}
+          <div className="col align-self-center">
+            <a className="carousel-control-next text-center" href="#alsolike" data-slide="next">
+              <span className="carousel-control-next-icon-arrow sp dj-rounded text-center">
+                  <i className="fas fa-arrow-right" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+              </span>
+            </a>
           </div>
         </div>
+{/*ALSO LIKE SECTION END*/}
       </div>
     )
   }

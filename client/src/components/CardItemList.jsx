@@ -1,61 +1,20 @@
 import React from 'react';
-import RatingImages from './RatingImages.jsx';
-// Importing the Bootstrap CSS
-import {Row, Col, Card, Badge} from 'react-bootstrap';
+import CardItem from './CardItem.jsx';
 
-const CardItemList = ({itemdetails})=>{
-  var star =0;
-  if(itemdetails.review !== null){
-    star = Math.round(itemdetails.review/itemdetails.total);
-  }
-
-  var st = '';
-  if(itemdetails.id_similar % 2 === 0){
-    st = {display: 'none'}
-  }else{
-    st = {display: 'block'}
-  }
-  var desc = itemdetails.desc_similar.substr(0,25);
-  var price = parseFloat(itemdetails.price_similar).toFixed(2)
+const CardItemList = ({itemdetailslist})=>{
+  var ItemGroupCard = itemdetailslist.map((item, index)=>{
+    return (
+      <div className="col-xs-3 col-sm-3 col-md-3" key={index}>
+        <CardItem itemdetails={item} />
+      </div>
+    )
+  })
 
   return (
-    <Card style={{ width: '14rem', border:'none', cursor: 'pointer'}}>
-        <Card.Img variant="top" src={itemdetails.img_similar} style={{marginBottom: '3rem'}}/>
-        <Card.Body style={{padding: '0rem'}}>
-          <Card.Title>
-            <Badge pill className='dj-new-alert' style={st}>
-              New
-            </Badge>
-            <span className='dj-title-prod'>
-              {itemdetails.title_similar}
-            </span>
-          </Card.Title>
-          <Card.Text>
-            <span className='dj-desc-prod inline-block'>
-              {desc}
-            </span>
-            <br></br>
-            <span className='dj-price-prod'>
-            ${price}
-            </span>
-            <div className='dj-rating-block'>
-              <Row>
-                <Col className='dj-star-prod' style={{float:'left'}}>
-                  <RatingImages count={star}/>
-                  <span className='dj-starcount-prod'>&emsp;&emsp; {star} ({itemdetails.total})</span>
-                </Col>
-              </Row>
-            </div>
-          </Card.Text>
-          <small className="text-muted">
-            <a href="#" className='dj-diclaimer-prod'>More options available</a>
-          </small>
-        </Card.Body>
-      </Card>
+    <div>
+      {ItemGroupCard}
+      </div>
   )
 }
 
 export default CardItemList;
-
-//33
-//Sleeper sectional, 3-seat

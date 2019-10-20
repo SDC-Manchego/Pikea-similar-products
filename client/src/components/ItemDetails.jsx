@@ -2,23 +2,18 @@ import React from 'react';
 import CardItemList from './CardItemList.jsx';
 
 const ItemDetails = ({listdata, position})=>{
-
-  var list = []
-  if(listdata.length){
-    list = listdata[position]
-  }
-
-  var ItemList = list.map((item, index)=>{
+  var ItemList = listdata.map((item, index)=>{
+    var classvalue = index === 0 ? 'carousel-item active': 'carousel-item'
     return (
-      <div className="p-2" style={{margin:'5px'}} key={index}>
-        <CardItemList itemdetails={item}/>
+      <div className={classvalue} key={index}>
+        <CardItemList itemdetailslist={item} />
       </div>
     )
   })
 
   return (
-    <div className="d-flex justify-content-center mb-3">
-    {ItemList}
+    <div className="carousel-inner no-padding">
+      {ItemList}
     </div>
   )
 }
