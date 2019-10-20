@@ -1,1 +1,11 @@
 picolofec.esy.es cmZu9YLub0Hk
+
+
+/*
+
+INDEX.JSX
+  -> ItemDetails.JSX
+    -> CardItemList.JSX
+      -> CardItem
+          -> RatingImages
+*/
