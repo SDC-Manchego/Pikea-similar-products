@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 var $ = require("jquery");
 import ItemDetails from './components/ItemDetails.jsx';
 import 'bootstrap'
+import './src/css/style.css';
+import './src/css/bootstrap.min.css';
+
 class App extends React.Component{
   constructor(props){
     super(props);
@@ -30,9 +33,14 @@ class App extends React.Component{
   }
 
   getData(arg){
-    var url = `${window.location.origin}/products/similar/`
+    /*
+     window.location
+    `${window.location.hostname}:3000/products/similar/`
+    */
+
+    var url = `http://127.0.0.1:3000/products/similar/`
     if(arg!== ''){
-      url = `${window.location.origin}/products/alsolike/`;
+      url = `http://127.0.0.1:3000/products/alsolike/`;
     }
     $.ajax({
       url: url,
@@ -76,7 +84,7 @@ class App extends React.Component{
           <div className="col align-self-center">
             <a className="carousel-control-prev" href="#similar" data-slide="prev">
               <span className="carousel-control-prev-icon-arrow sp dj-rounded align-self-center" style={{textAlign: 'center'}}>
-                <i className="fas fa-arrow-left" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+                <img style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}} src="https://image.flaticon.com/icons/svg/271/271218.svg"></img>
               </span>
             </a>
           </div>
@@ -88,7 +96,7 @@ class App extends React.Component{
           <div className="col align-self-center">
             <a className="carousel-control-next text-center" href="#similar" data-slide="next">
               <span className="carousel-control-next-icon-arrow sp dj-rounded text-center">
-                  <i className="fas fa-arrow-right dj-icon" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+                <img style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}} src="https://image.flaticon.com/icons/svg/271/271226.svg"></img>
               </span>
             </a>
           </div>
@@ -102,7 +110,7 @@ class App extends React.Component{
           <div className="col align-self-center">
             <a className="carousel-control-prev" href="#alsolike" data-slide="prev">
               <span className="carousel-control-prev-icon-arrow sp dj-rounded align-self-center">
-                <i className="fas fa-arrow-left" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+                <img style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}} src="https://image.flaticon.com/icons/svg/271/271218.svg"></img>
               </span>
             </a>
           </div>
@@ -114,7 +122,7 @@ class App extends React.Component{
           <div className="col align-self-center">
             <a className="carousel-control-next text-center" href="#alsolike" data-slide="next">
               <span className="carousel-control-next-icon-arrow sp dj-rounded text-center">
-                  <i className="fas fa-arrow-right" style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}}></i>
+                <img style={{padding:'0.9rem', fontSize:'1.5rem', width:'50px', height:'50px',color:'#000', backgroundColor: 'transparent', borderRadius:'50px'}} src="https://image.flaticon.com/icons/svg/271/271226.svg"></img>
               </span>
             </a>
           </div>
@@ -125,4 +133,4 @@ class App extends React.Component{
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('CarouselSimilar'));
