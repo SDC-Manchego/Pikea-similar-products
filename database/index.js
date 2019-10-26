@@ -14,11 +14,17 @@ const connection = mysql.createConnection({
  * callback: function that return the result value
  */
 const SelectAllProduct = (category, callback) => {
-  /*
-  SELECT * FROM similar_products ORDER BY RAND() LIMIT 5
-  */
-
   connection.query('SELECT * , (SELECT SUM(review_value) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as review, (SELECT COUNT(id_sreview) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as total FROM similar_products WHERE category_similar = ? ORDER BY RAND() AND review DESC LIMIT 25', [category], (error, results) => {
+    if (error) {
+      callback(error, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const SelectAllSimilar = (category, callback) => {
+  connection.query('SELECT * , (SELECT SUM(review_value) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as review, (SELECT COUNT(id_sreview) FROM similar_reviews WHERE similar_reviews.reviewProductID = similar_products.id_similar) as total FROM similar_products WHERE category_similar != ? ORDER BY RAND() LIMIT 25', [category], (error, results) => {
     if (error) {
       callback(error, null);
     } else {
@@ -78,4 +84,5 @@ module.exports = {
   InsertBulkReviews,
   SelectAllProduct,
   SelectProduct,
+  SelectAllSimilar
 };

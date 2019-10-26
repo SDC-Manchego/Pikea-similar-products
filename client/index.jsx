@@ -29,7 +29,7 @@ class App extends React.Component{
 
   componentDidMount(){
     this.getData('')
-    setTimeout(this.getData('Also'), 500);
+    setTimeout( this.getData( 'Also' ), 500);
   }
 
   getData(arg){
@@ -37,11 +37,12 @@ class App extends React.Component{
      window.location
     `${window.location.hostname}:3000/products/similar/`
     */
-
-    var url = `http://127.0.0.1:3000/products/similar/`
+ 
+    var url = `//${window.location.hostname}:3000/products/similar/${window.location.pathname.split('/')[1]}`
     if(arg!== ''){
-      url = `http://127.0.0.1:3000/products/alsolike/`;
+      url = `//${window.location.hostname}:3000/products/alsolike/${window.location.pathname.split('/')[1]}`;
     }
+    console.log('url->', url)
     $.ajax({
       url: url,
       type: 'GET',
