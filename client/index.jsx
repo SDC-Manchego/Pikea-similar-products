@@ -7,7 +7,7 @@ import 'bootstrap'
 import './src/css/style.css';
 import './src/css/bootstrap.min.css';
 
-class App extends React.Component{
+class CarouselSimilar extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -37,12 +37,15 @@ class App extends React.Component{
      window.location
     `${window.location.hostname}:3000/products/similar/`
     */
- 
-    var url = `//${window.location.hostname}:3000/products/similar/${window.location.pathname.split('/')[1]}`
-    if(arg!== ''){
-      url = `//${window.location.hostname}:3000/products/alsolike/${window.location.pathname.split('/')[1]}`;
+   var params = '1';
+    if(window.location.search.split('?')[1] !== undefined){
+      params = window.location.search.split('?')[1]
     }
-    console.log('url->', url)
+
+    var url = `//${window.location.hostname}:3000/products/similar/${params}`
+    if(arg!== ''){
+      url = `//${window.location.hostname}:3000/products/alsolike/${params+1}`;
+    }
     $.ajax({
       url: url,
       type: 'GET',
@@ -134,4 +137,4 @@ class App extends React.Component{
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('CarouselSimilar'));
+ReactDOM.render(<CarouselSimilar />, document.getElementById('CarouselSimilar'));
