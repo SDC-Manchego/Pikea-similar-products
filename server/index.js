@@ -121,7 +121,18 @@ app.put('/reviews/:id' , (req, res) => {
 })
 
 app.delete('/products/:id', (req, res) => {
-  res.send(`Recieved request to delete product ${req.params.id}`);
+  let productId = req.params.id;
+  db.deleteProduct(productId, (err, result) => {
+    if (err) {
+      res.status(200).json({
+        error: err,
+        result: 'Error deleting product',
+      });
+    } else {
+      res.send('Product deleted');
+    }
+  });
+  // res.send(`Recieved request to delete product ${req.params.id}`);
 });
 
 app.delete('/reviews/:id', (req, res) => {

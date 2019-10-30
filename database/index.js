@@ -94,5 +94,6 @@ module.exports = {
   InsertBulkReviews,
   SelectAllProduct,
   SelectProduct,
-  SelectAllSimilar
+  SelectAllSimilar,
+  deleteProduct,
 };
