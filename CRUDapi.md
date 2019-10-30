@@ -14,6 +14,9 @@ Insert a new item into the products table. Req should contain data for object to
 
 Can utilize existing insertBulkProduct function
 
+-Request Body params:
+products(required) : Array([title, description, price, imgUrl, Date, categoryId])
+
 ## POST /reviews/
 Insert a new item into the reviews table. Req should contain json data for object to be inserted. schema requires that all values be non-null.
 
