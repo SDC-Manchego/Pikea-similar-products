@@ -37,7 +37,7 @@ class CarouselSimilar extends React.Component{
      window.location
     `${window.location.hostname}:3000/products/similar/`
     */
-   var params = '1';
+    var params = '1';
     if(window.location.search.split('?')[1] !== undefined){
       params = window.location.search.split('?')[1]
     }
