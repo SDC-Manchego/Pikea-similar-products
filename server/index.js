@@ -83,6 +83,29 @@ app.get('/products/alsolike/:id', (req, res) => {
   });
 });
 
+app.post('/products', (req, res) => {
+  res.send('Post request to /products received');
+});
+
+app.post('/reviews', (req, res) => {
+  res.send('Post request to /reviews received');
+});
+
+app.put('/products/:id', (req, res) => {
+  res.send(`Received request to update product ${req.params.id}`);
+});
+
+app.put('/products/:id' , (req, res) => {
+  res.send(`Received request to update review ${req.params.id}`);
+})
+
+app.delete('/products/:id', (req, res) => {
+  res.send(`Recieved request to delete product ${req.params.id}`);
+});
+
+app.delete('/reviews/:id', (req, res) => {
+  res.send(`Received request to delete review ${req.params.id}`);
+})
 app.listen(PORT, () => {
   console.log(`App listen on ${PORT}`);
 });
