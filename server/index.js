@@ -84,7 +84,18 @@ app.get('/products/alsolike/:id', (req, res) => {
 });
 
 app.post('/products', (req, res) => {
-  res.send('Post request to /products received');
+  let { products } = req.body;
+  db.InsertBulkProduct(products, (err, result) => {
+    if (err) {
+      res.status(200).json({
+        error: err,
+        result: 'Error updating products',
+      });
+    } else {
+      res.send('Product(s) saved.')
+    }
+  })
+  // res.send('Post request to /products received');
 });
 
 app.post('/reviews', (req, res) => {
@@ -95,7 +106,7 @@ app.put('/products/:id', (req, res) => {
   res.send(`Received request to update product ${req.params.id}`);
 });
 
-app.put('/products/:id' , (req, res) => {
+app.put('/reviews/:id' , (req, res) => {
   res.send(`Received request to update review ${req.params.id}`);
 })
 
