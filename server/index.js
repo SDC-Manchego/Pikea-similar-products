@@ -89,17 +89,27 @@ app.post('/products', (req, res) => {
     if (err) {
       res.status(200).json({
         error: err,
-        result: 'Error updating products',
+        result: 'Error saving products',
       });
     } else {
       res.send('Product(s) saved.')
     }
-  })
+  });
   // res.send('Post request to /products received');
 });
 
 app.post('/reviews', (req, res) => {
-  res.send('Post request to /reviews received');
+  let { reviews } = req.body;
+  db.InsertBulkReviews(reviews, (err, result) => {
+    if (err) {
+      res.status(200).json({
+        error: err,
+        result: 'Error saving Reviews'
+      })
+    } else {
+      res.send('Review(s) saved.');
+    }
+  });
 });
 
 app.put('/products/:id', (req, res) => {
