@@ -19,7 +19,7 @@ app.get('/products/similar/', (req, res) => {
   let idParam = '1';
   db.SelectAllProduct(idParam, (err, result) => {
     if (err) {
-      res.status(200).json({
+      res.status(400).json({
         error: err,
         result: [],
       });
@@ -36,7 +36,7 @@ app.get('/products/similar/:id', (req, res) => {
   let idParam = req.params.id;
   db.SelectAllProduct(idParam, (err, result) => {
     if (err) {
-      res.status(200).json({
+      res.status(400).json({
         error: err,
         result: [],
       });
@@ -53,7 +53,7 @@ app.get('/products/alsolike/', (req, res) => {
   let idParam = '2';
   db.SelectAllSimilar(idParam, (err, result) => {
     if (err) {
-      res.status(200).json({
+      res.status(400).json({
         error: err,
         result: [],
       });
@@ -70,7 +70,7 @@ app.get('/products/alsolike/:id', (req, res) => {
   let idParam = req.params.id;
   db.SelectAllSimilar(idParam, (err, result) => {
     if (err) {
-      res.status(200).json({
+      res.status(400).json({
         error: err,
         result: [],
       });
@@ -87,7 +87,7 @@ app.post('/products', (req, res) => {
   let { products } = req.body;
   db.InsertBulkProduct(products, (err, result) => {
     if (err) {
-      res.status(200).json({
+      res.status(400).json({
         error: err,
         result: 'Error saving products',
       });
@@ -102,7 +102,7 @@ app.post('/reviews', (req, res) => {
   let { reviews } = req.body;
   db.InsertBulkReviews(reviews, (err, result) => {
     if (err) {
-      res.status(200).json({
+      res.status(400).json({
         error: err,
         result: 'Error saving Reviews'
       })
@@ -124,20 +124,38 @@ app.delete('/products/:id', (req, res) => {
   let productId = req.params.id;
   db.deleteProduct(productId, (err, result) => {
     if (err) {
-      res.status(200).json({
+      res.status(400).json({
         error: err,
         result: 'Error deleting product',
       });
     } else {
-      res.send('Product deleted');
+      db.deleteReviewsByProductId(productId, (err, result) => {
+        if (err) {
+          res.status(400).json({
+            error: err,
+            result: 'Error deleting product',
+          });
+        } else {
+          res.send('Product deleted');
+        }
+      });
     }
   });
-  // res.send(`Recieved request to delete product ${req.params.id}`);
 });
 
 app.delete('/reviews/:id', (req, res) => {
-  res.send(`Received request to delete review ${req.params.id}`);
-})
+  let reviewId = req.params.id;
+  db.deleteReview(reviewId, (err, results) => {
+    if (err) {
+      res.status(400).json({
+        error: err,
+        result: 'Error deleting review'
+      });
+    } else {
+      res.send('Review deleted')
+    }
+  });
+});
 app.listen(PORT, () => {
   console.log(`App listen on ${PORT}`);
 });

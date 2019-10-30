@@ -88,6 +88,26 @@ const deleteProduct = (productId, callback) => {
   });
 };
 
+// Deletes all reviews associated with a particular product
+const deleteReviewsByProductId = (productId, callback) => {
+  connection.query(`DELETE from similar_reviews WHERE reviewProductID = ${productId}`, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const deleteReview = (reviewId, callback) => {
+  connection.query(`DELETE from similar_reviews WHERE id_sreview = ${reviewId}`, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
 module.exports.insertbulk = InsertBulkProduct;
 module.exports = {
   InsertBulkProduct,
@@ -96,4 +116,6 @@ module.exports = {
   SelectProduct,
   SelectAllSimilar,
   deleteProduct,
+  deleteReviewsByProductId,
+  deleteReview,
 };
