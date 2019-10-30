@@ -78,6 +78,16 @@ const InsertBulkReviews = (data, callback) => {
   });
 };
 
+const deleteProduct = (productId, callback) => {
+  connection.query(`DELETE from similar_products WHERE id_similar = ${productId}`, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
 module.exports.insertbulk = InsertBulkProduct;
 module.exports = {
   InsertBulkProduct,
