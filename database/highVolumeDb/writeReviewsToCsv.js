@@ -1,5 +1,6 @@
 const createCsvWriter = require('csv-writer').createArrayCsvWriter;
 const ReviewGenerator = require('./reviewGenerator.js');
+const batchWriter = require('./batchWriter.js');
 const path = require('path');
 
 let reviewData;
@@ -9,12 +10,6 @@ const csvWriter = createCsvWriter({
   header: reviewHeader
 });
 
-const batchWriter = async (records, batchNumber) => {
-  await csvWriter.writeRecords(reviewData);
-  if (batchNumber %  10 === 0 ) {
-    console.log(batchNumber);
-  }
-}
 const writeReviewsToCsv = async() => {
   for (let i = 0; i < 2500; i++) {
     reviewData = ReviewGenerator.generateReviews(10000);
@@ -23,3 +18,5 @@ const writeReviewsToCsv = async() => {
 };
 
 writeReviewsToCsv();
+
+module.exports = writeReviewsToCsv;
