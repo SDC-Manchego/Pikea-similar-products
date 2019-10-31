@@ -78,11 +78,67 @@ const InsertBulkReviews = (data, callback) => {
   });
 };
 
+const deleteProduct = (productId, callback) => {
+  connection.query(`DELETE from similar_products WHERE id_similar = ${productId}`, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+// Deletes all reviews associated with a particular product
+const deleteReviewsByProductId = (productId, callback) => {
+  connection.query(`DELETE from similar_reviews WHERE reviewProductID = ${productId}`, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const deleteReview = (reviewId, callback) => {
+  connection.query(`DELETE from similar_reviews WHERE id_sreview = ${reviewId}`, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+// newVals = { colname1: colValue1, colname2: colValue2, ... }
+const updateProduct = (productId, newVals, callback) => {
+  connection.query(`UPDATE similar_products SET ? WHERE id_similar = ${productId}`, newVals, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+}
+// newVals must be same as above
+const updateReview = (reviewId, newVals, callback) => {
+  connection.query(`UPDATE similar_reviews SET ? WHERE id_sreview = ${reviewId}`, newVals ,(err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
 module.exports.insertbulk = InsertBulkProduct;
 module.exports = {
   InsertBulkProduct,
   InsertBulkReviews,
   SelectAllProduct,
   SelectProduct,
-  SelectAllSimilar
+  SelectAllSimilar,
+  deleteProduct,
+  deleteReviewsByProductId,
+  deleteReview,
+  updateProduct,
+  updateReview,
 };
