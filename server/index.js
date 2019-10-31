@@ -113,6 +113,8 @@ app.post('/reviews', (req, res) => {
 });
 
 app.put('/products/:id', (req, res) => {
+  let {updates} = req.body;
+  let productId = req.params.id;
   res.send(`Received request to update product ${req.params.id}`);
 });
 

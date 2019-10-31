@@ -108,6 +108,17 @@ const deleteReview = (reviewId, callback) => {
     }
   });
 };
+
+// newVals = { colname1: colValue1, colname2: colValue2, ... }
+const updateProduct = (productId, newVals, callback) => {
+  connection.query(`UPDATE similar_products SET ? WHERE id_similar = ${productId}`, newVals, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  })
+}
 module.exports.insertbulk = InsertBulkProduct;
 module.exports = {
   InsertBulkProduct,
@@ -118,4 +129,5 @@ module.exports = {
   deleteProduct,
   deleteReviewsByProductId,
   deleteReview,
+  updateProduct,
 };
