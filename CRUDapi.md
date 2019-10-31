@@ -53,7 +53,6 @@ updates: {
 }
 ```
 
-
 ## DELETE /products/:id
 Removes the entry for a particular product based  on product id number. Also delete any reviews associated with that product.
 
