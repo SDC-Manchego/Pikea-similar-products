@@ -45,3 +45,6 @@ class ReviewGenerator {
 // let reviews = reviewGenerator.generateReviews(10);
 // console.log(reviews, reviewGenerator.generateCsvHeader());
 
+module.exports = new ReviewGenerator();
+
+
