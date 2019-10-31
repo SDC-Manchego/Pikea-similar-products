@@ -29,6 +29,7 @@ class ReviewGenerator {
 
   generateReviews(numReviews) {
     let reviews = [];
+    // reviews.push(this.generateCsvHeader());
     for (let i = 0; i < numReviews; i++) {
       let review = [
         this.getReviewScore(),
@@ -40,10 +41,7 @@ class ReviewGenerator {
     }
     return reviews;
   }
-}
-// let reviewGenerator = new ReviewGenerator();
-// let reviews = reviewGenerator.generateReviews(10);
-// console.log(reviews, reviewGenerator.generateCsvHeader());
+};
 
 module.exports = new ReviewGenerator();
 
