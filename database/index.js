@@ -119,7 +119,7 @@ const updateProduct = (productId, newVals, callback) => {
     }
   });
 }
-
+// newVals must be same as above
 const updateReview = (reviewId, newVals, callback) => {
   connection.query(`UPDATE similar_reviews SET ? WHERE id_sreview = ${reviewId}`, newVals ,(err, results) => {
     if (err) {
