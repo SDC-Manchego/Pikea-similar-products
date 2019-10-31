@@ -114,8 +114,18 @@ app.post('/reviews', (req, res) => {
 
 app.put('/products/:id', (req, res) => {
   let {updates} = req.body;
+  console.log(updates);
   let productId = req.params.id;
-  res.send(`Received request to update product ${req.params.id}`);
+  db.updateProduct(productId, updates, (err, results) => {
+    if (err) {
+      res.status(400).json({
+        error: err,
+        result: 'Error updating product ',
+      })
+    } else {
+      res.send('Product Updated');
+    }
+  });
 });
 
 app.put('/reviews/:id' , (req, res) => {
