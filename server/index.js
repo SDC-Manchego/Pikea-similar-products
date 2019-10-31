@@ -113,8 +113,7 @@ app.post('/reviews', (req, res) => {
 });
 
 app.put('/products/:id', (req, res) => {
-  let {updates} = req.body;
-  console.log(updates);
+  let { updates } = req.body;
   let productId = req.params.id;
   db.updateProduct(productId, updates, (err, results) => {
     if (err) {
@@ -129,7 +128,18 @@ app.put('/products/:id', (req, res) => {
 });
 
 app.put('/reviews/:id' , (req, res) => {
-  res.send(`Received request to update review ${req.params.id}`);
+  let { updates } = req.body;
+  let productId = req.params.id;
+  db.updateReview(productId, updates, (err, results) => {
+    if (err) {
+      res.status(400).json({
+        error: err,
+        result: 'Error updating review',
+      });
+    } else {
+      res.send('Review Updated');
+    }
+  })
 })
 
 app.delete('/products/:id', (req, res) => {

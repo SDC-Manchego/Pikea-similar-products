@@ -117,8 +117,18 @@ const updateProduct = (productId, newVals, callback) => {
     } else {
       callback(null, results);
     }
-  })
+  });
 }
+
+const updateReview = (reviewId, newVals, callback) => {
+  connection.query(`UPDATE similar_reviews SET ? WHERE id_sreview = ${reviewId}`, newVals ,(err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
 module.exports.insertbulk = InsertBulkProduct;
 module.exports = {
   InsertBulkProduct,
@@ -130,4 +140,5 @@ module.exports = {
   deleteReviewsByProductId,
   deleteReview,
   updateProduct,
+  updateReview,
 };
