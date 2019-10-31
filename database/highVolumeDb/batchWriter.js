@@ -3,4 +3,4 @@ module.exports = async (records, batchNumber) => {
   if (batchNumber % 100 === 0 ) {
     console.log(`Wrote batch number: ${batchNumber}`);
   }
-}
+};
