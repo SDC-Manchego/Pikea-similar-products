@@ -44,5 +44,3 @@ class ReviewGenerator {
 };
 
 module.exports = new ReviewGenerator();
-
-
