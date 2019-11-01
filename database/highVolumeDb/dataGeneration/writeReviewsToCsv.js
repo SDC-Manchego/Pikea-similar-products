@@ -6,7 +6,7 @@ const path = require('path');
 let reviewData;
 let reviewHeader = ReviewGenerator.generateCsvHeader();
 const csvWriter = createCsvWriter({
-  path: path.join(__dirname, 'csvs', 'reviewstest.csv'),
+  path: path.join(__dirname, 'csvs', 'reviews.csv'),
   header: reviewHeader,
 });
 
