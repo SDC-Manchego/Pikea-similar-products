@@ -13,10 +13,10 @@ const csvWriter = createCsvWriter({
 const writeReviewsToCsv = async () => {
   for (let i = 0; i < 2500; i++) {
     reviewData = ReviewGenerator.generateReviews(10000);
-     await batchWriter(reviewData, i);
+     await batchWriter(reviewData, i, csvWriter);
   }
 };
 
-writeReviewsToCsv();
+// writeReviewsToCsv();
 
 module.exports = writeReviewsToCsv;
