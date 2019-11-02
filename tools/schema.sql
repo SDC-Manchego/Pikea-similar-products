@@ -1,28 +1,25 @@
-DROP DATABASE IF EXISTS ikeaproductsdb;
-CREATE DATABASE ikeaproductsdb;
+DROP DATABASE IF EXISTS ikeaproducts;
+CREATE DATABASE ikeaproducts;
 
-USE ikeaproductsdb;
+\c ikeaproducts;
 
 CREATE TABLE similar_products (
-  id_similar int NOT NULL AUTO_INCREMENT,
+  id_similar SERIAL UNIQUE PRIMARY KEY,
   title_similar varchar(100) NOT NULL,
   desc_similar varchar(250) NOT NULL,
   price_similar float NOT NULL,
   img_similar varchar(100) NOT NULL,
-  created_similar DATETIME NOT NULL,
-  category_similar int NOT NULL,
-  PRIMARY KEY(id_similar)
+  created_similar varchar(250) NOT NULL,
+  category_similar int NOT NULL
 );
 
 /* similar_reviews table */
 CREATE TABLE similar_reviews (
-  id_sreview int NOT NULL AUTO_INCREMENT,
-  review_value float NOT NULL,
-  reviewProductID int NOT NULL,
+  id_review SERIAL,
+  value_review float NOT NULL,
+  productId_review int NOT NULL REFERENCES similar_products(id_similar),
   user_review varchar(250) NOT NULL,
-  created_sreview DATETIME NOT NULL,
-  PRIMARY KEY(id_sreview),
-  FOREIGN KEY (reviewProductID) REFERENCES similar_products (id_similar)
+  created_review varchar(250) NOT NULL
 );
 
 
