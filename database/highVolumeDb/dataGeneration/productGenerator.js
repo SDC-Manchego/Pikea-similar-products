@@ -31,8 +31,16 @@ class ProductGenerator {
     return this.getRandomInt(1, 100000);
   }
 
+  getReviewCount() {
+    return this.getRandomInt(0, 1000);
+  }
+
+  getAverageReviewScore() {
+    return this.getRandomInt(1, 5);
+  }
+
   generateCsvHeader() {
-    return ['product_title', 'product_description', 'price', 'img_url', 'create_date', 'related_product_id'];
+    return ['product_title', 'product_description', 'price', 'img_url', 'create_date', 'related_product_id', 'review', 'total'];
   }
 
   generateProducts(numProducts) {
@@ -45,6 +53,8 @@ class ProductGenerator {
         this.getImageUrl(),
         this.getProductCreationDate(),
         this.getRelatedProductId(),
+        this.getAverageReviewScore(),
+        this.getReviewCount(),
       ];
       products.push(product);
     }
