@@ -10,7 +10,8 @@ const pool = new Pool({
 module.exports = {
     selectSimilar: async (productId, callback) => {
       const client = await pool.connect();  
-      queryText = 'SELECT * FROM similar_products Where category_similar = $1 ORDER BY review DESC FETCH FIRST 25 ROWS ONLY;'
+      // SELECT * FROM similar_products WHERE id_similar IN (SELECT id_similar FROM similar_products WHERE category_similar = $1) ORDER BY review DESC LIMIT 25
+      queryText = 'SELECT * FROM similar_products WHERE id_similar IN (SELECT id_similar FROM similar_products WHERE category_similar = $1 LIMIT 25) ORDER BY review DESC'
       values = [productId];
       try {
         res = await client.query(queryText, values); 
