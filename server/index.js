@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require ('path')
-const db = require('./../database/');
+// const db = require('./../database/');
+const postgresModel = require('../database/highVolumeDb/postgresModel/model.js');
 
 const PORT = '3000';
 const app = express();
@@ -32,21 +33,21 @@ app.get('/products/similar/', (req, res) => {
   });
 });
 
-app.get('/products/similar/:id', (req, res) => {
+app.get('/products/similar/:id', async (req, res) => {
   let idParam = req.params.id;
-  db.SelectAllProduct(idParam, (err, result) => {
-    if (err) {
-      res.status(400).json({
-        error: err,
-        result: [],
-      });
-    } else {
-      res.status(200).json({
-        error: null,
-        result,
-      });
-    }
-  });
+  try {
+    const { rows } = await postgresModel.selectSimilar(idParam);
+    res.json({
+      error: null,
+      result: rows,
+    })
+  } catch (err) {
+    res.status(404).json({
+      error: err,
+      result: [],
+    });
+  } 
+  res.send('hi')
 });
 
 app.get('/products/alsolike/', (req, res) => {
