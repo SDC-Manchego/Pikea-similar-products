@@ -40,14 +40,13 @@ app.get('/products/similar/:id', async (req, res) => {
     res.json({
       error: null,
       result: rows,
-    })
+    });
   } catch (err) {
     res.status(404).json({
       error: err,
       result: [],
     });
   } 
-  res.send('hi')
 });
 
 app.get('/products/alsolike/', (req, res) => {
