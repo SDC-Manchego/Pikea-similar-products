@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS ikeaproductsdb;
-CREATE DATABASE ikeaproductsdb;
+DROP DATABASE IF EXISTS ikeaproducts;
+CREATE DATABASE ikeaproducts;
 
-USE ikeaproductsdb;
+\c ikeaproducts;
 
 CREATE TABLE similar_products (
   id_similar SERIAL UNIQUE PRIMARY KEY,
@@ -9,7 +9,7 @@ CREATE TABLE similar_products (
   desc_similar varchar(250) NOT NULL,
   price_similar float NOT NULL,
   img_similar varchar(100) NOT NULL,
-  created_similar DATETIME NOT NULL,
+  created_similar varchar(250) NOT NULL,
   category_similar int NOT NULL,
   review int NOT NULL,
   total int NOT NULL
