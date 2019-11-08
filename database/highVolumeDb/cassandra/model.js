@@ -16,7 +16,7 @@ class CassandraModel {
       let data = await this.client.execute(queryText, queryValue, {prepare: true});
       return data;
     } catch(err) {
-      throw new Error('Error retrieving similar products');
+      throw err;
     }
   }
 }
