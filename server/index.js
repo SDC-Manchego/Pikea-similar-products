@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require ('path')
 // const db = require('./../database/');
 const postgresModel = require('../database/highVolumeDb/postgresModel/model.js');
-
+const cassandraModel = require('../database/highVolumeDb/cassandra/model.js');
 const PORT = '3000';
 const app = express();
 app.use(bodyParser.json());
@@ -36,7 +36,7 @@ app.get('/products/similar/', (req, res) => {
 app.get('/products/similar/:id', async (req, res) => {
   let idParam = req.params.id;
   try {
-    const { rows } = await postgresModel.selectSimilar(idParam);
+    const { rows } = await cassandraModel.getSimilarProducts(idParam);
     res.json({
       error: null,
       result: rows,
