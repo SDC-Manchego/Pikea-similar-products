@@ -32,11 +32,11 @@ app.get('/products/similar/', (req, res) => {
     }
   });
 });
-
+// suggests random products that are from the same category as the product currently being viewed
 app.get('/products/similar/:id', async (req, res) => {
   let idParam = req.params.id;
   try {
-    const { rows } = await cassandraModel.getSimilarProducts(idParam);
+    const { rows } = await cassandraModel.getRelatedProducts(idParam);
     res.json({
       error: null,
       result: rows,
@@ -66,21 +66,25 @@ app.get('/products/alsolike/', (req, res) => {
   });
 });
 
-app.get('/products/alsolike/:id', (req, res) => {
+// suggests random products that are from a different category than the product currently being viewed
+app.get('/products/alsolike/:id', async (req, res) => {
   let idParam = req.params.id;
-  db.SelectAllSimilar(idParam, (err, result) => {
-    if (err) {
-      res.status(400).json({
-        error: err,
-        result: [],
-      });
-    } else {
-      res.status(200).json({
-        error: null,
-        result,
-      });
-    }
-  });
+  let suggestedCategory;
+  do {
+    suggestedCategory = Math.floor(Math.random() * (100000 - 1 + 1)) + 1;
+  } while (suggestedCategory === idParam)
+  try {
+    const { rows } = await cassandraModel.getRelatedProducts(suggestedCategory);
+    res.json({
+      error: null,
+      result: rows,
+    });
+  } catch (err) {
+    res.status(404).json({
+      error: err,
+      result: null
+    })
+  }
 });
 
 app.post('/products', (req, res) => {

@@ -9,7 +9,7 @@ class CassandraModel {
     });
   }
 
-  async getSimilarProducts(id) {
+  async getRelatedProducts(id) {
     const queryText = 'SELECT * from similar_products WHERE category_similar = ? LIMIT 25';
     const queryValue = [id];
     try {
