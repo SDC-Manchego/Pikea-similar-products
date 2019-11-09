@@ -13,8 +13,7 @@ class CassandraModel {
     const queryText = 'SELECT * from similar_products WHERE category_similar = ? LIMIT 25';
     const queryValue = [id];
     try {
-      let data = await this.client.execute(queryText, queryValue, {prepare: true});
-      return data;
+      return await this.client.execute(queryText, queryValue, {prepare: true});
     } catch(err) {
       throw err;
     }
