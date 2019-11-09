@@ -17,7 +17,11 @@ class PostgresModel {
     } catch (err) {
       throw(err);
     }
-  } 
+  }
+  
+  async insertProduct() {
+    const query = 'INSERT INTO similar_products (title_similar, desc_similar, price_similar, img_similar, created_similar, category_similar) VALUES ?'
+  }
 } 
 
 module.exports = new PostgresModel();

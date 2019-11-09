@@ -2,9 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require ('path')
-// const db = require('./../database/');
 const postgresModel = require('../database/highVolumeDb/postgresModel/model.js');
-// const cassandraModel = require('../database/highVolumeDb/cassandra/model.js');
+
 const PORT = '3000';
 const app = express();
 app.use(bodyParser.json());
@@ -54,8 +53,8 @@ app.get('/products/alsolike/:id', async (req, res) => {
     })
   }
 });
-
-app.post('/products', (req, res) => {
+/////////Update For postgres later ////////////
+app.post('/products', async (req, res) => {
   let { products } = req.body;
   db.InsertBulkProduct(products, (err, result) => {
     if (err) {
