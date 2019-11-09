@@ -18,6 +18,16 @@ class CassandraModel {
       throw err;
     }
   }
+
+  async insertProduct(data) {
+    const queryText = 'INSERT INTO similar_products(id_similar, title_similar, desc_similar, price_similar, img_similar, created_similar, category_similar, review, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    try {
+      return await this.client.execute(queryText, data, {prepare: true});
+    } catch(err) {
+      console.log(err);
+      throw err;
+    }
+  }
 }
 
 module.exports = new CassandraModel();

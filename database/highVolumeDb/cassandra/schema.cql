@@ -17,16 +17,3 @@ CREATE TABLE IF NOT EXISTS similar_products (
   total int, 
   PRIMARY KEY(category_similar, id_similar)
 );
-
-CREATE TABLE IF NOT EXISTS product_lookup (
-  id_similar int,
-  title_similar text,
-  desc_similar text,
-  price_similar float,
-  img_similar text,
-  created_similar text,
-  category_similar int,
-  review int,
-  total int, 
-  PRIMARY KEY(id_similar)
-);

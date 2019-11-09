@@ -59,18 +59,13 @@ app.get('/products/alsolike/:id', async (req, res) => {
 });
 /////////Update For postgres later ////////////
 app.post('/products', async (req, res) => {
-  let { products } = req.body;
-  db.InsertBulkProduct(products, (err, result) => {
-    if (err) {
-      res.status(400).json({
-        error: err,
-        result: 'Error saving products',
-      });
-    } else {
-      res.send('Product(s) saved.')
-    }
-  });
-  // res.send('Post request to /products received');
+  let { product } = req.body;
+  try {
+    await cassandraModel.insertProduct(product);
+    res.send('product inserted')
+  } catch(err) {
+    res.status(400).send(err);
+  }
 });
 
 app.put('/products/:id', (req, res) => {
