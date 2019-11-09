@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require ('path')
 const postgresModel = require('../database/highVolumeDb/postgresModel/model.js');
-
+const cassandraModel = require('../database/highVolumeDb/cassandra/model.js');
 const PORT = '3000';
 const app = express();
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.use('/:id',express.static(public));
 app.get('/products/similar/:id', async (req, res) => {
   let idParam = req.params.id;
   try {
-    const { rows } = await postgresModel.getRelatedProducts(idParam);
+    const { rows } = await cassandraModel.getRelatedProducts(idParam);
     res.json({
       error: null,
       result: rows,
@@ -41,7 +41,7 @@ app.get('/products/alsolike/:id', async (req, res) => {
     suggestedCategory = Math.floor(Math.random() * (100000 - 1 + 1)) + 1;
   } while (suggestedCategory === idParam)
   try {
-    const { rows } = await postgresModel.getRelatedProducts(suggestedCategory);
+    const { rows } = await cassandraModel.getRelatedProducts(suggestedCategory);
     res.json({
       error: null,
       result: rows,
