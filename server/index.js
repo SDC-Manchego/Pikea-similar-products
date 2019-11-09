@@ -1,11 +1,15 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require ('path')
 const postgresModel = require('../database/highVolumeDb/postgresModel/model.js');
 const cassandraModel = require('../database/highVolumeDb/cassandra/model.js');
+const morgan = require('morgan')
+
 const PORT = '3000';
 const app = express();
+app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Enable All CORS Requests
