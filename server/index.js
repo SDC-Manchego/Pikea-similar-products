@@ -7,9 +7,9 @@ const postgresModel = require('../database/highVolumeDb/postgresModel/model.js')
 const cassandraModel = require('../database/highVolumeDb/cassandra/model.js');
 const morgan = require('morgan')
 
-const PORT = '3000';
+const PORT = '3002';
 const app = express();
-app.use(morgan('combined'));
+// app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Enable All CORS Requests
@@ -60,6 +60,7 @@ app.get('/products/alsolike/:id', async (req, res) => {
 /////////Update For postgres later ////////////
 app.post('/products', async (req, res) => {
   let { product } = req.body;
+  console.log(product);
   try {
     await cassandraModel.insertProduct(product);
     res.send('product inserted')

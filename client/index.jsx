@@ -42,9 +42,9 @@ class CarouselSimilar extends React.Component{
       params = window.location.search.split('?')[1]
     }
 
-    var url = `//${window.location.hostname}:3000/products/similar/${params}`
+    var url = `//${window.location.hostname}:3002/products/similar/${params}`
     if(arg!== ''){
-      url = `//${window.location.hostname}:3000/products/alsolike/${params+1}`;
+      url = `//${window.location.hostname}:3002/products/alsolike/${params+1}`;
     }
     $.ajax({
       url: url,
@@ -137,4 +137,4 @@ class CarouselSimilar extends React.Component{
   }
 }
 
-ReactDOM.render(<CarouselSimilar />, document.getElementById('CarouselSimilar'));
+ReactDOM.render(<CarouselSimilar />, document.getElementById('SimilarProducts'));

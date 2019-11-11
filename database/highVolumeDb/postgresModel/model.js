@@ -5,7 +5,7 @@ class PostgresModel {
     this.pool = new Pool({
       user: 'postgres',
       database: 'ikeaproducts',
-      password: 'beckypete0206',
+      password: '',
     });
   }
   
