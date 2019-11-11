@@ -6,7 +6,7 @@ import {Row, Col, Badge} from 'react-bootstrap';
 const CardItem = ({itemdetails})=>{
   var star =0;
   if(itemdetails.review !== null){
-    star = Math.round(itemdetails.review/itemdetails.total);
+    star = itemdetails.review;
   }
 
   var st = '';

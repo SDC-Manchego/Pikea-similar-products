@@ -7,7 +7,8 @@
     "start": "node server/index.js",
     "test": "jest --detectOpenHandles",
     "bulkprod": "node database/seederProducts.js",
-    "build": "webpack -d --watch"
+    "build": "webpack -p",
+    "writecsv": "mkdir database/highVolumeDb/dataGeneration/csvs && node database/highVolumeDb/dataGeneration/generateCsvData.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
+    "morgan": "^1.9.1",
     "mysql2": "^1.7.0",
+    "newrelic": "^6.1.0",
     "nodemon": "^1.19.3",
     "pg": "^7.12.1",
     "react": "^16.10.2",

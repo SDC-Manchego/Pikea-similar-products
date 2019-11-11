@@ -1,3 +1,5 @@
 node_modules
 public/bundle.js
 database/highVolumeDb/dataGeneration/csvs
+newrelic.js
+newrelic_agent.log
