@@ -3,7 +3,7 @@ const cassandra = require('cassandra-driver');
 class CassandraModel {
   constructor() {
     this.client = new cassandra.Client({
-      contactPoints: ['52.15.230.136', '127.0.0.1'],
+      contactPoints: ['172.31.7.183', '127.0.0.1'],
       localDataCenter: 'datacenter1',
       keyspace: 'ikeaproducts',
     });
