@@ -137,4 +137,4 @@ class CarouselSimilar extends React.Component{
   }
 }
 
-ReactDOM.render(<CarouselSimilar />, document.getElementById('SimilarProducts'));
+ReactDOM.render(<CarouselSimilar />, document.getElementById('CarouselSimilar'));
