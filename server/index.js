@@ -17,7 +17,10 @@ app.use(cors());
 
 const public = path.join(__dirname, '/../public/');
 app.use(express.static(public));
-app.use('/:id',express.static(public));
+// app.use('/:id',express.static(public));
+app.get('/loaderio-6af2f90836918515ab22795a51236f5e', (req, res) => {
+  res.send('loaderio-6af2f90836918515ab22795a51236f5e');
+});
 
 // suggests random products that are from the same category as the product currently being viewed
 app.get('/products/similar/:id', async (req, res) => {
@@ -108,9 +111,6 @@ app.delete('/products/:id', (req, res) => {
 });
 
 //Loader.io verification
-app.get('/loaderio-6af2f90836918515ab22795a51236f5e', (req, res) => {
-  res.send('loaderio-6af2f90836918515ab22795a51236f5e');
-});
 
 app.listen(PORT, () => {
   console.log(`App listen on ${PORT}`);
