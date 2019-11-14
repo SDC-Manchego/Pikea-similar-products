@@ -107,6 +107,11 @@ app.delete('/products/:id', (req, res) => {
   });
 });
 
+//Loader.io verification
+app.get('/oaderio-6af2f90836918515ab22795a51236f5e', (req, res) => {
+  res.send('loaderio-6af2f90836918515ab22795a51236f5e');
+});
+
 app.listen(PORT, () => {
   console.log(`App listen on ${PORT}`);
 });
