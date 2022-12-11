@@ -26,7 +26,7 @@
     "bootstrap": "^4.3.1",
     "cassandra-driver": "^4.3.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jquery": "^3.4.1",
     "morgan": "^1.9.1",
     "mysql2": "^1.7.0",
